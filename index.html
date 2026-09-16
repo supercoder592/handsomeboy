@@ -182,6 +182,11 @@
     opacity:.92;
     transform:translateY(0);
   }
+  /* 相簿頁時隱藏簽名：只在主畫面出現 */
+  body.album-open .signature{
+    opacity:0;
+    transition:opacity .4s ease 0s;
+  }
 
   #glfail{
     position:fixed;inset:0;display:none;
@@ -513,11 +518,13 @@
       album.classList.add('show');
       bmAlbum.classList.add('active');
       bmMain.classList.remove('active');
+      document.body.classList.add('album-open');
     });
     bmMain.addEventListener('click', ()=>{
       album.classList.remove('show');
       bmMain.classList.add('active');
       bmAlbum.classList.remove('active');
+      document.body.classList.remove('album-open');
     });
   })();
 </script>
