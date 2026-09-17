@@ -164,6 +164,95 @@
   }
 
 
+  /* ── 封面：國三八班 + 紅絲綢蝴蝶結 ── */
+  #coverBox{
+    position:fixed;inset:0;
+    perspective:1700px;
+    perspective-origin:80% 50%;
+    z-index:20;
+  }
+  #cover{
+    position:absolute;inset:0;
+    transform-origin:right center;
+    transform:rotateY(0deg);
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    box-shadow:-14px 0 40px rgba(80,62,38,.35);
+    background:
+      radial-gradient(140% 100% at 60% 30%, rgba(255,255,255,.06), transparent 60%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.028) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 3px),
+      linear-gradient(160deg, #33445f 0%, #273750 55%, #1d2a40 100%);
+    transition:transform 1s cubic-bezier(.32,.72,.24,1), visibility 0s 1s;
+    overflow:hidden;
+  }
+  #cover::before{ /* 右側書脊布紋 */
+    content:"";
+    position:absolute;right:0;top:0;bottom:0;width:60px;
+    background:linear-gradient(270deg, rgba(0,0,0,.34), transparent);
+  }
+  #cover.open{
+    transform:rotateY(106deg);
+    visibility:hidden;
+  }
+  .cover-slip{
+    position:absolute;
+    top:6.5%;left:8%;
+    background:linear-gradient(#f8f2e2, #efe6cf);
+    border:1px solid rgba(90,74,52,.55);
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.4), 3px 4px 10px rgba(0,0,0,.38);
+    padding:26px 15px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.3em;
+    font-size:clamp(30px, 7.5vw, 52px);
+    line-height:1.1;
+    color:#39301f;
+  }
+  .ribbon-v{
+    position:absolute;top:-2%;bottom:-2%;left:50%;
+    width:min(13vw, 64px);
+    transform:translateX(-50%);
+    background:linear-gradient(90deg,#7e181d,#c93230 26%,#f0928a 50%,#c93230 74%,#7e181d);
+    box-shadow:0 0 16px rgba(0,0,0,.35);
+  }
+  .ribbon-h{
+    position:absolute;left:-2%;right:-2%;top:50%;
+    height:min(13vw, 64px);
+    transform:translateY(-50%);
+    background:linear-gradient(180deg,#7e181d,#c93230 26%,#f0928a 50%,#c93230 74%,#7e181d);
+    box-shadow:0 0 16px rgba(0,0,0,.35);
+  }
+  .bow{
+    position:absolute;left:50%;top:50%;
+    width:min(74vw, 380px);
+    transform:translate(-50%,-52%);
+    filter:drop-shadow(0 6px 10px rgba(0,0,0,.4));
+  }
+  .bow .loopL,.bow .loopR,.bow .tailL,.bow .tailR,.bow .knot{
+    transform-box:view-box;
+  }
+  .bow .loopL,.bow .loopR{transform-origin:150px 90px}
+  .bow .knot{transform-origin:150px 90px}
+  .bow .tailL{transform-origin:145px 95px}
+  .bow .tailR{transform-origin:155px 95px}
+  /* 解開動畫 */
+  #cover.untie .loopL{animation:bowLoopL .85s cubic-bezier(.5,0,.8,.4) forwards}
+  #cover.untie .loopR{animation:bowLoopR .85s cubic-bezier(.5,0,.8,.4) .1s forwards}
+  #cover.untie .tailL{animation:bowTailL 1.15s ease-in forwards}
+  #cover.untie .tailR{animation:bowTailR 1.15s ease-in .08s forwards}
+  #cover.untie .knot{animation:bowKnot .7s ease-in .55s forwards}
+  @keyframes bowLoopL{45%{transform:scale(.55,.8) rotate(-14deg)}100%{transform:scale(.04,.2) rotate(-40deg);opacity:0}}
+  @keyframes bowLoopR{45%{transform:scale(.55,.8) rotate(14deg)}100%{transform:scale(.04,.2) rotate(40deg);opacity:0}}
+  @keyframes bowTailL{40%{transform:translate(-8px,10px) rotate(9deg)}100%{transform:translate(-46px,90px) rotate(30deg);opacity:0}}
+  @keyframes bowTailR{40%{transform:translate(8px,10px) rotate(-9deg)}100%{transform:translate(46px,90px) rotate(-30deg);opacity:0}}
+  @keyframes bowKnot{to{transform:scale(.08);opacity:0}}
+  #cover.untie .ribbon-v{animation:ribSlideV .9s cubic-bezier(.55,0,.85,.4) .85s forwards}
+  #cover.untie .ribbon-h{animation:ribSlideH .9s cubic-bezier(.55,0,.85,.4) .95s forwards}
+  @keyframes ribSlideV{to{transform:translate(-50%,118vh);opacity:.7}}
+  @keyframes ribSlideH{to{transform:translate(118vw,-50%);opacity:.7}}
+
   #glfail{
     position:fixed;inset:0;display:none;
     align-items:center;justify-content:center;text-align:center;
@@ -482,6 +571,54 @@
   </div>
 
   <div id="glfail">此裝置不支援 WebGL，<br>無法呈現墨書效果。</div>
+
+  <!-- 封面：蝴蝶結解開後翻頁，主畫面才動筆 -->
+  <div id="coverBox">
+    <div id="cover">
+      <div class="cover-slip"><span>國</span><span>三</span><span>八</span><span>班</span></div>
+      <div class="ribbon-v"></div>
+      <div class="ribbon-h"></div>
+      <svg class="bow" viewBox="0 0 300 200" aria-hidden="true">
+        <defs>
+          <linearGradient id="silk" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#e35a52"/>
+            <stop offset=".45" stop-color="#c92f2d"/>
+            <stop offset="1" stop-color="#8e1a1f"/>
+          </linearGradient>
+          <linearGradient id="silk2" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#a02026"/>
+            <stop offset=".5" stop-color="#e0554e"/>
+            <stop offset="1" stop-color="#8e1a1f"/>
+          </linearGradient>
+        </defs>
+        <path class="tailL" fill="url(#silk)" stroke="#7c161b" stroke-width="1.5"
+          d="M148 96 C 128 132, 116 158, 96 186 L 126 178 C 138 154, 147 128, 152 106 Z"/>
+        <path class="tailR" fill="url(#silk)" stroke="#7c161b" stroke-width="1.5"
+          d="M152 96 C 172 132, 184 158, 204 186 L 174 178 C 162 154, 153 128, 148 106 Z"/>
+        <path class="loopL" fill="url(#silk2)" stroke="#7c161b" stroke-width="2"
+          d="M150 90 C 92 34, 30 56, 44 96 C 54 126, 116 116, 150 90 Z"/>
+        <path class="loopR" fill="url(#silk2)" stroke="#7c161b" stroke-width="2"
+          d="M150 90 C 208 34, 270 56, 256 96 C 246 126, 184 116, 150 90 Z"/>
+        <rect class="knot" x="138" y="76" width="24" height="28" rx="7"
+          fill="url(#silk)" stroke="#7c161b" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+  <script>
+    /* 封面時間軸：解開蝴蝶結 → 翻開封面 → 開始寫字 */
+    (function(){
+      const cover = document.getElementById('cover');
+      const box = document.getElementById('coverBox');
+      setTimeout(()=>cover.classList.add('untie'), 1000);
+      setTimeout(()=>cover.classList.add('open'), 2900);
+      setTimeout(()=>{
+        box.style.display = 'none';
+        if (window.__startWriting) window.__startWriting();
+      }, 3950);
+      /* 保險：無論如何 6 秒後一定開始寫 */
+      setTimeout(()=>{ if (window.__startWriting) window.__startWriting(); }, 6000);
+    })();
+  </script>
 
 <script>
   /* 書籤切換：主畫面為第 1 頁，「相簿」翻來第 2 頁蓋上，「墨書」翻回 */
@@ -870,6 +1007,13 @@ function polylineCum(poly){
 let script = [];
 let scriptStart = 0;
 let scriptIndex = 0;
+/* 封面翻開後才動筆 */
+let writingStarted = false;
+window.__startWriting = function(){
+  if (writingStarted) return;
+  writingStarted = true;
+  scriptStart = performance.now();
+};
 let writingDone = false;
 
 /* 字形幾何快取：每個字的逐筆有序落墨點（S 空間）只算一次 */
@@ -1023,6 +1167,7 @@ function buildScript(){
 }
 
 function runScript(now){
+  if (!writingStarted) return;
   const elapsed = now - scriptStart;
   while (scriptIndex < script.length && script[scriptIndex].t <= elapsed){
     const p = script[scriptIndex++];
