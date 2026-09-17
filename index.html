@@ -212,31 +212,35 @@
   }
   .ribbon-v{
     position:absolute;top:-2%;bottom:-2%;left:50%;
-    width:min(13vw, 64px);
+    width:min(12vw, 60px);
     transform:translateX(-50%);
-    background:linear-gradient(90deg,#7e181d,#c93230 26%,#f0928a 50%,#c93230 74%,#7e181d);
-    box-shadow:0 0 16px rgba(0,0,0,.35);
+    background:
+      repeating-linear-gradient(178deg, rgba(255,255,255,.05) 0 2px, transparent 2px 5px),
+      linear-gradient(90deg,#5f0c10 0%,#9c191e 16%,#cf3a34 36%,#f2937f 50%,#cf3a34 64%,#9c191e 84%,#5f0c10 100%);
+    box-shadow:0 0 18px rgba(0,0,0,.45), inset 0 0 6px rgba(0,0,0,.25);
   }
   .ribbon-h{
     position:absolute;left:-2%;right:-2%;top:50%;
-    height:min(13vw, 64px);
+    height:min(12vw, 60px);
     transform:translateY(-50%);
-    background:linear-gradient(180deg,#7e181d,#c93230 26%,#f0928a 50%,#c93230 74%,#7e181d);
-    box-shadow:0 0 16px rgba(0,0,0,.35);
+    background:
+      repeating-linear-gradient(88deg, rgba(255,255,255,.05) 0 2px, transparent 2px 5px),
+      linear-gradient(180deg,#5f0c10 0%,#9c191e 16%,#cf3a34 36%,#f2937f 50%,#cf3a34 64%,#9c191e 84%,#5f0c10 100%);
+    box-shadow:0 0 18px rgba(0,0,0,.45), inset 0 0 6px rgba(0,0,0,.25);
   }
   .bow{
     position:absolute;left:50%;top:50%;
-    width:min(74vw, 380px);
-    transform:translate(-50%,-52%);
-    filter:drop-shadow(0 6px 10px rgba(0,0,0,.4));
+    width:min(82vw, 420px);
+    transform:translate(-50%,-50%) rotate(-3deg);
+    filter:drop-shadow(0 8px 14px rgba(0,0,0,.45));
   }
   .bow .loopL,.bow .loopR,.bow .tailL,.bow .tailR,.bow .knot{
     transform-box:view-box;
   }
-  .bow .loopL,.bow .loopR{transform-origin:150px 90px}
-  .bow .knot{transform-origin:150px 90px}
-  .bow .tailL{transform-origin:145px 95px}
-  .bow .tailR{transform-origin:155px 95px}
+  .bow .loopL,.bow .loopR{transform-origin:180px 110px}
+  .bow .knot{transform-origin:180px 110px}
+  .bow .tailL{transform-origin:174px 120px}
+  .bow .tailR{transform-origin:186px 120px}
   /* 解開動畫 */
   #cover.untie .loopL{animation:bowLoopL .85s cubic-bezier(.5,0,.8,.4) forwards}
   #cover.untie .loopR{animation:bowLoopR .85s cubic-bezier(.5,0,.8,.4) .1s forwards}
@@ -578,29 +582,107 @@
       <div class="cover-slip"><span>國</span><span>三</span><span>八</span><span>班</span></div>
       <div class="ribbon-v"></div>
       <div class="ribbon-h"></div>
-      <svg class="bow" viewBox="0 0 300 200" aria-hidden="true">
+      <svg class="bow" viewBox="0 0 360 260" aria-hidden="true">
         <defs>
-          <linearGradient id="silk" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#e35a52"/>
-            <stop offset=".45" stop-color="#c92f2d"/>
-            <stop offset="1" stop-color="#8e1a1f"/>
+          <linearGradient id="silkTail" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#d64a3e"/>
+            <stop offset=".4" stop-color="#b72226"/>
+            <stop offset=".8" stop-color="#8d1318"/>
+            <stop offset="1" stop-color="#6c0d11"/>
           </linearGradient>
-          <linearGradient id="silk2" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stop-color="#a02026"/>
-            <stop offset=".5" stop-color="#e0554e"/>
-            <stop offset="1" stop-color="#8e1a1f"/>
+          <linearGradient id="silkLoopL" x1="0" y1="0" x2="1" y2=".4">
+            <stop offset="0" stop-color="#8d1318"/>
+            <stop offset=".35" stop-color="#c92f2d"/>
+            <stop offset=".62" stop-color="#ef7c66"/>
+            <stop offset=".85" stop-color="#c22a2b"/>
+            <stop offset="1" stop-color="#901419"/>
+          </linearGradient>
+          <linearGradient id="silkLoopR" x1="1" y1="0" x2="0" y2=".4">
+            <stop offset="0" stop-color="#8d1318"/>
+            <stop offset=".35" stop-color="#c92f2d"/>
+            <stop offset=".62" stop-color="#ef7c66"/>
+            <stop offset=".85" stop-color="#c22a2b"/>
+            <stop offset="1" stop-color="#901419"/>
+          </linearGradient>
+          <linearGradient id="silkKnot" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ee7a63"/>
+            <stop offset=".45" stop-color="#c22a2b"/>
+            <stop offset="1" stop-color="#7c1015"/>
           </linearGradient>
         </defs>
-        <path class="tailL" fill="url(#silk)" stroke="#7c161b" stroke-width="1.5"
-          d="M148 96 C 128 132, 116 158, 96 186 L 126 178 C 138 154, 147 128, 152 106 Z"/>
-        <path class="tailR" fill="url(#silk)" stroke="#7c161b" stroke-width="1.5"
-          d="M152 96 C 172 132, 184 158, 204 186 L 174 178 C 162 154, 153 128, 148 106 Z"/>
-        <path class="loopL" fill="url(#silk2)" stroke="#7c161b" stroke-width="2"
-          d="M150 90 C 92 34, 30 56, 44 96 C 54 126, 116 116, 150 90 Z"/>
-        <path class="loopR" fill="url(#silk2)" stroke="#7c161b" stroke-width="2"
-          d="M150 90 C 208 34, 270 56, 256 96 C 246 126, 184 116, 150 90 Z"/>
-        <rect class="knot" x="138" y="76" width="24" height="28" rx="7"
-          fill="url(#silk)" stroke="#7c161b" stroke-width="2"/>
+
+        <!-- 緞尾（燕尾剪口、垂墜弧線） -->
+        <g class="tailL">
+          <path fill="url(#silkTail)" stroke="#6c0d11" stroke-width="1.6" stroke-linejoin="round"
+            d="M170 122
+               C 148 150, 132 178, 106 224
+               L 96 246
+               L 124 232
+               L 128 252
+               L 152 226
+               C 166 194, 174 160, 180 134 Z"/>
+          <path fill="rgba(255,255,255,.16)"
+            d="M167 130 C 150 156, 138 180, 118 218 C 130 196, 146 168, 172 136 Z"/>
+        </g>
+        <g class="tailR">
+          <path fill="url(#silkTail)" stroke="#6c0d11" stroke-width="1.6" stroke-linejoin="round"
+            d="M190 122
+               C 212 150, 228 178, 254 224
+               L 264 246
+               L 236 232
+               L 232 252
+               L 208 226
+               C 194 194, 186 160, 180 134 Z"/>
+          <path fill="rgba(255,255,255,.16)"
+            d="M193 130 C 210 156, 222 180, 242 218 C 230 196, 214 168, 188 136 Z"/>
+        </g>
+
+        <!-- 左右環（外形 + 內側陰影 + 摺角 + 高光） -->
+        <g class="loopL">
+          <path fill="url(#silkLoopL)" stroke="#6c0d11" stroke-width="2" stroke-linejoin="round"
+            d="M180 110
+               C 118 34, 26 50, 34 108
+               C 39 148, 96 156, 148 132
+               C 162 126, 172 118, 180 110 Z"/>
+          <path fill="rgba(90,8,12,.55)"
+            d="M180 110
+               C 128 66, 66 62, 52 100
+               C 48 122, 84 136, 128 126
+               C 108 128, 72 122, 68 102
+               C 66 76, 126 74, 180 110 Z"/>
+          <path fill="rgba(60,5,8,.6)" d="M180 110 L 148 92 L 150 130 Z"/>
+          <path fill="rgba(255,255,255,.22)"
+            d="M70 66 C 96 48, 136 58, 162 88 C 132 66, 100 58, 74 72 Z"/>
+        </g>
+        <g class="loopR">
+          <path fill="url(#silkLoopR)" stroke="#6c0d11" stroke-width="2" stroke-linejoin="round"
+            d="M180 110
+               C 242 34, 334 50, 326 108
+               C 321 148, 264 156, 212 132
+               C 198 126, 188 118, 180 110 Z"/>
+          <path fill="rgba(90,8,12,.55)"
+            d="M180 110
+               C 232 66, 294 62, 308 100
+               C 312 122, 276 136, 232 126
+               C 252 128, 288 122, 292 102
+               C 294 76, 234 74, 180 110 Z"/>
+          <path fill="rgba(60,5,8,.6)" d="M180 110 L 212 92 L 210 130 Z"/>
+          <path fill="rgba(255,255,255,.22)"
+            d="M290 66 C 264 48, 224 58, 198 88 C 228 66, 260 58, 286 72 Z"/>
+        </g>
+
+        <!-- 中央結（包摺 + 高光） -->
+        <g class="knot">
+          <path fill="url(#silkKnot)" stroke="#6c0d11" stroke-width="2" stroke-linejoin="round"
+            d="M166 90
+               C 160 100, 160 122, 167 132
+               C 176 137, 184 137, 193 132
+               C 200 122, 200 100, 194 90
+               C 185 85, 175 85, 166 90 Z"/>
+          <path fill="rgba(60,5,8,.45)" d="M170 92 C 167 104, 167 118, 171 129 C 169 118, 169 102, 170 92 Z"/>
+          <path fill="rgba(60,5,8,.45)" d="M190 92 C 193 104, 193 118, 189 129 C 191 118, 191 102, 190 92 Z"/>
+          <path fill="rgba(255,255,255,.28)" d="M174 90 C 172 100, 172 112, 174 122 C 177 112, 177 98, 174 90 Z"/>
+        </g>
       </svg>
     </div>
   </div>
